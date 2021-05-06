@@ -2,6 +2,7 @@ export const fonts = {
     body: "NunitoSans_400Regular",
     bold: "NunitoSans_700Bold",
     extrabold: "NunitoSans_800ExtraBold",
+    title: "Sarina_400Regular",
 };
 
 export const fontWeights = {
