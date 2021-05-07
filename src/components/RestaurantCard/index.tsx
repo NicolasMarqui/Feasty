@@ -4,6 +4,7 @@ import { RestaurantCardWrapper, RestaurantStarWrapper, RestaurantCardLabelWrappe
 import { Card, Title, Paragraph } from "react-native-paper";
 import { Rating } from "react-native-ratings";
 import { MaterialIcons } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/core";
 
 interface RestaurantCardProps {}
 
@@ -16,8 +17,12 @@ const mock = {
 };
 
 const RestaurantCard: React.FC<RestaurantCardProps> = ({}) => {
+    const navigation = useNavigation();
+
     return (
-        <RestaurantCardWrapper onPress={() => console.log("Click")}>
+        <RestaurantCardWrapper
+            onPress={() => navigation.navigate("detail", { data: mock })}
+        >
             <Card.Cover source={{ uri: "https://picsum.photos/700" }} />
 
             <RestaurantCardLabelWrapper isOpen={mock.isOpen}>

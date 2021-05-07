@@ -1,9 +1,13 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { MaterialIcons } from "@expo/vector-icons";
+import StackRoutes from "./stack.routes";
 
 import Home from "../screens/Home";
 import MapTabBar from "../components/MapTabBar";
+import Checkout from "../screens/Checkout";
+import FullMap from "../screens/Map";
+import Favorites from "../screens/Favorites";
 
 const Apptab = createBottomTabNavigator();
 
@@ -29,7 +33,7 @@ const TabRoutes = ({}) => {
         >
             <Apptab.Screen
                 name="Restaurants"
-                component={Home}
+                component={StackRoutes}
                 options={{
                     tabBarIcon: ({ size, color }) => (
                         <MaterialIcons
@@ -43,7 +47,7 @@ const TabRoutes = ({}) => {
 
             <Apptab.Screen
                 name="Checkout"
-                component={Home}
+                component={Checkout}
                 options={{
                     tabBarIcon: ({ size, color }) => (
                         <MaterialIcons
@@ -57,7 +61,7 @@ const TabRoutes = ({}) => {
 
             <Apptab.Screen
                 name="Map"
-                component={Home}
+                component={FullMap}
                 options={{
                     tabBarIcon: ({ size, color }) => (
                         <MapTabBar size={size} color={color} />
@@ -67,7 +71,7 @@ const TabRoutes = ({}) => {
 
             <Apptab.Screen
                 name="Favorites"
-                component={Home}
+                component={Favorites}
                 options={{
                     tabBarIcon: ({ size, color }) => (
                         <MaterialIcons
