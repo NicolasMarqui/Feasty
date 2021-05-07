@@ -9,6 +9,7 @@ import { Nunito_400Regular, Nunito_700Bold, Nunito_800ExtraBold} from "@expo-goo
 import { Sarina_400Regular } from "@expo-google-fonts/sarina";
 import Header from "./src/components/Header";
 import Routes from "./src/routes";
+import { RestaurantsContextProvider } from "./src/services/restaurants/restaurants.context";
 
 export default function App() {
     const [fontsLoaded] = useFonts({
@@ -26,8 +27,10 @@ export default function App() {
         // @ts-ignore
         <ThemeProvider theme={theme}>
             <StatusBar style="auto" />
-            <Header />
-            <Routes />
+            <RestaurantsContextProvider>
+                <Header />
+                <Routes />
+            </RestaurantsContextProvider>
         </ThemeProvider>
     );
 }

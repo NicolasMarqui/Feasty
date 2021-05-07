@@ -1,5 +1,5 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Users\nickp\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add -D @types/react-awesome-stars-rating
+  C:\Program Files\nodejs\node.exe C:\Users\nickp\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add -D @types/camelize
 
 PATH: 
   C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\nickp\bin;C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0;C:\Windows\System32\OpenSSH;C:\Program Files\Git\cmd;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Microsoft\Web Platform Installer;C:\Program Files\nodejs;C:\Program Files\Docker\Docker\resources\bin;C:\ProgramData\DockerDesktop\version-bin;C:\ProgramData\chocolatey\bin;C:\Users\nickp\AppData\Local\Programs\Python\Python38\Scripts;C:\Users\nickp\AppData\Local\Programs\Python\Python38;C:\Users\nickp\AppData\Local\Microsoft\WindowsApps;C:\Users\nickp\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\nickp\AppData\Roaming\npm;C:\Program Files\heroku\bin
@@ -14,7 +14,7 @@ Platform:
   win32 x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/@types%2freact-awesome-stars-rating: Not found
+  Error: https://registry.yarnpkg.com/@types%2fcamelize: Not found
       at Request.params.callback [as _callback] (C:\Users\nickp\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:66987:18)
       at Request.self.callback (C:\Users\nickp\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:140748:22)
       at Request.emit (events.js:315:20)
@@ -42,16 +42,18 @@ npm manifest:
       "@react-native-community/masked-view": "0.1.10",
       "@react-navigation/bottom-tabs": "^5.11.10",
       "@react-navigation/native": "^5.9.4",
+      "@react-navigation/stack": "^5.14.4",
+      "camelize": "^1.0.0",
       "expo": "~41.0.1",
       "expo-app-loading": "^1.0.3",
       "expo-font": "~9.1.0",
       "expo-status-bar": "~1.0.4",
       "react": "16.13.1",
-      "react-awesome-stars-rating": "^0.3.0",
       "react-dom": "16.13.1",
       "react-native": "https://github.com/expo/react-native/archive/sdk-41.0.0.tar.gz",
       "react-native-gesture-handler": "~1.10.2",
       "react-native-paper": "^4.8.1",
+      "react-native-ratings": "^8.0.4",
       "react-native-reanimated": "~2.1.0",
       "react-native-safe-area-context": "3.2.0",
       "react-native-screens": "~3.0.0",
@@ -1949,6 +1951,14 @@ Lockfile:
     integrity sha512-BxNSMLHpU+oS37Xok0ql6rc9U7IC8aUD4+U5ZPbjDJ0pwzZxGGh0YOEBzfV4k/Ig3cbPdvVWbc1C9HHbCVr2oQ==
     dependencies:
       nanoid "^3.1.15"
+  
+  "@react-navigation/stack@^5.14.4":
+    version "5.14.4"
+    resolved "https://registry.yarnpkg.com/@react-navigation/stack/-/stack-5.14.4.tgz#32f6717c03494f0ca6cf0dd43d8302af824de9e9"
+    integrity sha512-gQjWK8JHtVkD1p7wzjtSPuScJI0mSAk/N/gzgjQZo+rDUwgM8rOTDcVNRbtEOqCEgLQcZrZQHwhOjkrJirehjQ==
+    dependencies:
+      color "^3.1.3"
+      react-native-iphone-x-helper "^1.3.0"
   
   "@types/eslint-visitor-keys@^1.0.0":
     version "1.0.0"
@@ -5834,15 +5844,6 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/range-parser/-/range-parser-1.2.1.tgz#3cf37023d199e1c24d1a55b84800c2f3e6468031"
     integrity sha512-Hrgsx+orqoygnmhFbKaHE6c296J+HTAQXoxEF6gNupROmmGJRoyzfG3ccAveqCBrwr/2yxQ5BVd/GTl5agOwSg==
   
-  react-awesome-stars-rating@^0.3.0:
-    version "0.3.0"
-    resolved "https://registry.yarnpkg.com/react-awesome-stars-rating/-/react-awesome-stars-rating-0.3.0.tgz#d04278c6fd3879726b1ad172ea5fcc4cfcce4204"
-    integrity sha512-7pN3KNSAuUjBhG9Cal7wlfgVROguY4QwrP3VkZRdMXa2BZCcgd4oX87x9+UyKyLrfe/yujE6X/4csA78zV/t2Q==
-    dependencies:
-      prop-types "^15.7.2"
-      react "^17.0.1"
-      react-dom "^17.0.1"
-  
   react-devtools-core@^4.6.0:
     version "4.13.0"
     resolved "https://registry.yarnpkg.com/react-devtools-core/-/react-devtools-core-4.13.0.tgz#fa80ee03b1a975c1d9898e24de841e45a4b22d30"
@@ -5860,15 +5861,6 @@ Lockfile:
       object-assign "^4.1.1"
       prop-types "^15.6.2"
       scheduler "^0.19.1"
-  
-  react-dom@^17.0.1:
-    version "17.0.2"
-    resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-17.0.2.tgz#ecffb6845e3ad8dbfcdc498f0d0a939736502c23"
-    integrity sha512-s4h96KtLDUQlsENhMn1ar8t2bEa+q/YAtj8pPPdIjPDGBDIVNsrD9aXNWqspUe6AzKCIG0C1HZZLqLV7qpOBGA==
-    dependencies:
-      loose-envify "^1.1.0"
-      object-assign "^4.1.1"
-      scheduler "^0.20.2"
   
   react-is@^16.12.0, react-is@^16.13.0, react-is@^16.7.0, react-is@^16.8.1, react-is@^16.8.4:
     version "16.13.1"
@@ -5904,6 +5896,13 @@ Lockfile:
       "@callstack/react-theme-provider" "^3.0.5"
       color "^3.1.2"
       react-native-iphone-x-helper "^1.3.1"
+  
+  react-native-ratings@^8.0.4:
+    version "8.0.4"
+    resolved "https://registry.yarnpkg.com/react-native-ratings/-/react-native-ratings-8.0.4.tgz#efd5ebad8acc08bf98d34d39b18fb7a6813ef991"
+    integrity sha512-Xczu5lskIIRD6BEdz9A0jDRpEck/SFxRqiglkXi0u67yAtI1/pcJC76P4MukCbT8K4BPVl+42w83YqXBoBRl7A==
+    dependencies:
+      lodash "^4.17.15"
   
   react-native-reanimated@~2.1.0:
     version "2.1.0"
@@ -5990,14 +5989,6 @@ Lockfile:
       loose-envify "^1.1.0"
       object-assign "^4.1.1"
       prop-types "^15.6.2"
-  
-  react@^17.0.1:
-    version "17.0.2"
-    resolved "https://registry.yarnpkg.com/react/-/react-17.0.2.tgz#d0b5cc516d29eb3eee383f75b62864cfb6800037"
-    integrity sha512-gnhPt75i/dq/z3/6q/0asP78D0u592D5L1pd7M8P+dck6Fu/jJeL6iVVK23fptSUZj8Vjf++7wXA8UNclGQcbA==
-    dependencies:
-      loose-envify "^1.1.0"
-      object-assign "^4.1.1"
   
   readable-stream@^2.0.1, readable-stream@^2.2.2, readable-stream@~2.3.6:
     version "2.3.7"
@@ -6240,14 +6231,6 @@ Lockfile:
     version "0.19.1"
     resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.19.1.tgz#4f3e2ed2c1a7d65681f4c854fa8c5a1ccb40f196"
     integrity sha512-n/zwRWRYSUj0/3g/otKDRPMh6qv2SYMWNq85IEa8iZyAv8od9zDYpGSnpBEjNgcMNq6Scbu5KfIPxNF72R/2EA==
-    dependencies:
-      loose-envify "^1.1.0"
-      object-assign "^4.1.1"
-  
-  scheduler@^0.20.2:
-    version "0.20.2"
-    resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.20.2.tgz#4baee39436e34aa93b4874bddcbf0fe8b8b50e91"
-    integrity sha512-2eWfGgAqqWFGqtdMmcL5zCMK1U8KlXv8SQFGglL3CEtd0aDVDWgeF/YoCmvln55m5zSk3J/20hTaSBeSObsQDQ==
     dependencies:
       loose-envify "^1.1.0"
       object-assign "^4.1.1"

@@ -12,7 +12,7 @@ export const RestaurantStarWrapper = styled.View`
 `;
 
 interface RestaurantCardLabelStatusProps {
-    isOpen: boolean;
+    isOpen: boolean | undefined;
 }
 
 export const RestaurantCardLabelWrapper = styled.View<RestaurantCardLabelStatusProps>`

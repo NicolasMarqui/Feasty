@@ -5,8 +5,11 @@ import { Card, Title, Paragraph } from "react-native-paper";
 import { Rating } from "react-native-ratings";
 import { MaterialIcons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/core";
+import { RestaurantMockProps } from "../../utils/types";
 
-interface RestaurantCardProps {}
+interface RestaurantCardProps {
+    restaurant: RestaurantMockProps;
+}
 
 const mock = {
     isOpen: true,
@@ -16,18 +19,20 @@ const mock = {
     isFavorite: false,
 };
 
-const RestaurantCard: React.FC<RestaurantCardProps> = ({}) => {
+const RestaurantCard: React.FC<RestaurantCardProps> = ({ restaurant }) => {
     const navigation = useNavigation();
+    const { name, rating, vicinity, photos, isOpenNow } = restaurant;
 
     return (
         <RestaurantCardWrapper
-            onPress={() => navigation.navigate("detail", { data: mock })}
+            onPress={() => navigation.navigate("detail", { data: restaurant })}
         >
-            <Card.Cover source={{ uri: "https://picsum.photos/700" }} />
+            {/* @ts-ignore */}
+            <Card.Cover source={{ uri: photos[0] }} />
 
-            <RestaurantCardLabelWrapper isOpen={mock.isOpen}>
+            <RestaurantCardLabelWrapper isOpen={isOpenNow}>
                 <RestaurantCardLabelText>
-                    {mock.isOpen ? "Open" : "Closed"}
+                    {isOpenNow ? "Open" : "Closed"}
                 </RestaurantCardLabelText>
             </RestaurantCardLabelWrapper>
 
@@ -54,14 +59,14 @@ const RestaurantCard: React.FC<RestaurantCardProps> = ({}) => {
                         imageSize={25}
                         onFinishRating={() => {}}
                         style={{ paddingVertical: 10 }}
-                        startingValue={mock.rating}
+                        startingValue={rating}
                     />
                 </RestaurantStarWrapper>
 
                 <RestaurantCardInfoWrapper>
                     <RestaurantCardInfo>
-                        <Title>{mock.title}</Title>
-                        <Paragraph>{mock.location}</Paragraph>
+                        <Title>{name}</Title>
+                        <Paragraph>{vicinity}</Paragraph>
                     </RestaurantCardInfo>
 
                     <RestaurantCardType></RestaurantCardType>

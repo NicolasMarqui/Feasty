@@ -24,8 +24,6 @@ const TabRoutes = ({}) => {
                     color: "#F94144",
                 },
                 style: {
-                    paddingBottom: 30,
-                    paddingTop: 30,
                     paddingHorizontal: 12,
                     backgroundColor: "#222",
                 },
