@@ -1,7 +1,6 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { MaterialIcons } from "@expo/vector-icons";
-import { Platform } from "react-native";
 
 import Home from "../screens/Home";
 import MapTabBar from "../components/MapTabBar";
@@ -15,11 +14,16 @@ const TabRoutes = ({}) => {
                 activeTintColor: "#5A5A5A",
                 inactiveTintColor: "#4E4E4E",
                 labelPosition: "below-icon",
+                keyboardHidesTabBar: true,
+                showLabel: false,
+                labelStyle: {
+                    color: "#F94144",
+                },
                 style: {
-                    paddingBottom: 10,
+                    paddingBottom: 30,
+                    paddingTop: 30,
                     paddingHorizontal: 12,
-                    height: 60,
-                    backgroundColor: "#fff",
+                    backgroundColor: "#222",
                 },
             }}
         >
@@ -31,7 +35,7 @@ const TabRoutes = ({}) => {
                         <MaterialIcons
                             name="restaurant"
                             size={size}
-                            color={color}
+                            color="#fff"
                         />
                     ),
                 }}
@@ -45,7 +49,7 @@ const TabRoutes = ({}) => {
                         <MaterialIcons
                             name="local-grocery-store"
                             size={size}
-                            color={color}
+                            color="#fff"
                         />
                     ),
                 }}
@@ -69,7 +73,7 @@ const TabRoutes = ({}) => {
                         <MaterialIcons
                             name="favorite"
                             size={size}
-                            color={color}
+                            color="#fff"
                         />
                     ),
                 }}
@@ -80,11 +84,7 @@ const TabRoutes = ({}) => {
                 component={Home}
                 options={{
                     tabBarIcon: ({ size, color }) => (
-                        <MaterialIcons
-                            name="person"
-                            size={size}
-                            color={color}
-                        />
+                        <MaterialIcons name="person" size={size} color="#fff" />
                     ),
                 }}
             />
