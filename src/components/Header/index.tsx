@@ -7,13 +7,13 @@ import { Feather } from "@expo/vector-icons";
 const Header: React.FC = ({}) => {
     return (
         <HeaderWrapper>
-            {/* <HeaderMenu>
+            <HeaderMenu>
                 <Feather name="menu" size={30} color="black" />
-            </HeaderMenu> */}
+            </HeaderMenu>
             <HeaderTitle>Feasty</HeaderTitle>
-            {/* <HeaderAvatar>
-                <Avatar.Icon size={30} icon="folder" />
-            </HeaderAvatar> */}
+            <HeaderAvatar>
+                <Avatar.Text size={35} label="NM" />
+            </HeaderAvatar>
         </HeaderWrapper>
     );
 };

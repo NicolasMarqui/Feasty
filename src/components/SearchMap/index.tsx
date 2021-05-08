@@ -1,38 +1,39 @@
 import React, { useState, useContext, useEffect } from "react";
 import { LocationContext } from "../../services/restaurants/location/location.context";
-import { SearchWrapper, SearchInput } from "./Search.styles";
+import { SearchMapWrapper, SearchMapInput } from "./SearchMap.styles";
 import { Alert } from "react-native";
 
-const Search: React.FC = ({}) => {
+const SearchMap: React.FC = ({}) => {
     const { keyword, search } = useContext(LocationContext);
-    const [searchKeyword, setsearchKeyword] = useState<string>(keyword);
+    const [searchKeywordMap, setsearchKeywordMap] = useState<string>(keyword);
 
     const handleSubmit = () => {
-        if (!searchKeyword || searchKeyword === "") {
+        if (!searchKeywordMap || searchKeywordMap === "") {
             Alert.alert("Please write something! 😑");
             return false;
         }
 
-        search(searchKeyword);
+        search(searchKeywordMap);
     };
 
     useEffect(() => {
-        setsearchKeyword(keyword);
+        setsearchKeywordMap(keyword);
     }, [keyword]);
 
     useEffect(() => {
-        search(searchKeyword);
+        search(searchKeywordMap);
     }, []);
 
     return (
-        <SearchWrapper>
-            <SearchInput
+        <SearchMapWrapper>
+            <SearchMapInput
                 placeholder="Search for a location"
-                onChangeText={(text) => setsearchKeyword(text)}
-                value={searchKeyword}
+                icon="map"
+                onChangeText={(text) => setsearchKeywordMap(text)}
+                value={searchKeywordMap}
                 onSubmitEditing={handleSubmit}
             />
-        </SearchWrapper>
+        </SearchMapWrapper>
     );
 };
-export default Search;
+export default SearchMap;

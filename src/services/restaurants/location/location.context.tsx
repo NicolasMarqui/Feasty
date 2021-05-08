@@ -10,6 +10,16 @@ import { locationRequest, locationTransform } from "./location.service";
 interface ResultProps {
     lat?: number | 0;
     lng?: number | 0;
+    viewport?: {
+        northeast: {
+            lat: number;
+            lng: number;
+        };
+        southwest: {
+            lat: number;
+            lng: number;
+        };
+    };
 }
 
 interface ContextProps {
@@ -24,6 +34,16 @@ export const LocationContext = createContext<ContextProps>({
     location: {
         lat: 37.7749295,
         lng: -122.4194155,
+        viewport: {
+            northeast: {
+                lat: 37.7750214302915,
+                lng: -122.4202089697085,
+            },
+            southwest: {
+                lat: 37.7723234697085,
+                lng: -122.4229069302915,
+            },
+        },
     },
     isLoading: false,
     error: "",
@@ -74,7 +94,19 @@ export const LocationContextProvider: React.FC<RestaurantContextProviderProps> =
     return (
         <LocationContext.Provider
             value={{
-                location,
+                location: {
+                    ...location,
+                    viewport: {
+                        northeast: {
+                            lat: 37.7750214302915,
+                            lng: -122.4202089697085,
+                        },
+                        southwest: {
+                            lat: 37.7723234697085,
+                            lng: -122.4229069302915,
+                        },
+                    },
+                },
                 isLoading,
                 error,
                 // @ts-ignore
