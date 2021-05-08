@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { MaterialIcons } from "@expo/vector-icons";
 import StackRoutes from "./stack.routes";
@@ -8,10 +8,13 @@ import MapTabBar from "../components/MapTabBar";
 import Checkout from "../screens/Checkout";
 import FullMap from "../screens/Map";
 import Favorites from "../screens/Favorites";
+import { AuthContext } from "../services/auth/auth.context";
 
 const Apptab = createBottomTabNavigator();
 
 const TabRoutes = ({}) => {
+    const { isAuthenticated } = useContext(AuthContext);
+
     return (
         <Apptab.Navigator
             tabBarOptions={{
@@ -83,15 +86,35 @@ const TabRoutes = ({}) => {
                 }}
             />
 
-            <Apptab.Screen
-                name="Profile"
-                component={Home}
-                options={{
-                    tabBarIcon: ({ size, color }) => (
-                        <MaterialIcons name="person" size={size} color="#fff" />
-                    ),
-                }}
-            />
+            {isAuthenticated ? (
+                <Apptab.Screen
+                    name="Profile"
+                    component={Home}
+                    options={{
+                        tabBarIcon: ({ size, color }) => (
+                            <MaterialIcons
+                                name="person"
+                                size={size}
+                                color="#fff"
+                            />
+                        ),
+                    }}
+                />
+            ) : (
+                <Apptab.Screen
+                    name="Login"
+                    component={Home}
+                    options={{
+                        tabBarIcon: ({ size, color }) => (
+                            <MaterialIcons
+                                name="person"
+                                size={size}
+                                color="#fff"
+                            />
+                        ),
+                    }}
+                />
+            )}
         </Apptab.Navigator>
     );
 };
