@@ -9,8 +9,10 @@ import { Nunito_400Regular, Nunito_700Bold, Nunito_800ExtraBold} from "@expo-goo
 import { Sarina_400Regular } from "@expo-google-fonts/sarina";
 import Header from "./src/components/Header";
 import Routes from "./src/routes";
+
 import { RestaurantsContextProvider } from "./src/services/restaurants/restaurants.context";
 import { LocationContextProvider } from "./src/services/restaurants/location/location.context";
+import { FavoritesContextProvider } from "./src/services/favorites/favorites.context";
 
 export default function App() {
     const [fontsLoaded] = useFonts({
@@ -28,12 +30,14 @@ export default function App() {
         // @ts-ignore
         <ThemeProvider theme={theme}>
             <StatusBar style="auto" />
-            <LocationContextProvider>
-                <RestaurantsContextProvider>
-                    <Header />
-                    <Routes />
-                </RestaurantsContextProvider>
-            </LocationContextProvider>
+            <FavoritesContextProvider>
+                <LocationContextProvider>
+                    <RestaurantsContextProvider>
+                        <Header />
+                        <Routes />
+                    </RestaurantsContextProvider>
+                </LocationContextProvider>
+            </FavoritesContextProvider>
         </ThemeProvider>
     );
 }

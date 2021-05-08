@@ -1,11 +1,12 @@
 import React from "react";
 // prettier-ignore
-import { RestaurantCardWrapper, RestaurantStarWrapper, RestaurantCardLabelWrapper, RestaurantCardLabelText, RestaurantCardFavoriteWrapper, RestaurantCardInfoWrapper, RestaurantCardInfo, RestaurantCardType, RestaurantCardIcon} from "./RestaurantCard.styles";
+import { RestaurantCardWrapper, RestaurantStarWrapper, RestaurantCardLabelWrapper, RestaurantCardLabelText, RestaurantCardInfoWrapper, RestaurantCardInfo, RestaurantCardType, RestaurantCardIcon} from "./RestaurantCard.styles";
 import { Card, Title, Paragraph } from "react-native-paper";
 import { Rating } from "react-native-ratings";
-import { MaterialIcons } from "@expo/vector-icons";
+
 import { useNavigation } from "@react-navigation/core";
 import { RestaurantMockProps } from "../../utils/types";
+import FavoriteIcon from "../FavoriteIcon";
 
 interface RestaurantCardProps {
     restaurant: RestaurantMockProps;
@@ -36,17 +37,7 @@ const RestaurantCard: React.FC<RestaurantCardProps> = ({ restaurant }) => {
                 </RestaurantCardLabelText>
             </RestaurantCardLabelWrapper>
 
-            <RestaurantCardFavoriteWrapper>
-                {mock.isFavorite ? (
-                    <MaterialIcons name="favorite" size={30} color="#F94144" />
-                ) : (
-                    <MaterialIcons
-                        name="favorite-border"
-                        size={30}
-                        color="#222"
-                    />
-                )}
-            </RestaurantCardFavoriteWrapper>
+            <FavoriteIcon restaurant={restaurant} />
 
             <Card.Content>
                 <RestaurantStarWrapper>

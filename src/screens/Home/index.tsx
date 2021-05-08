@@ -10,9 +10,8 @@ import { LocationContext } from "../../services/restaurants/location/location.co
 import Empty from "../../components/Empty";
 
 const Home: React.FC = ({}) => {
-    const { keyword } = useContext(LocationContext);
-    const { error: locationError } = useContext(LocationContext);
-    const { restaurants, isLoading, error } = useContext(RestaurantsContext);
+    const { error: locationError, keyword } = useContext(LocationContext);
+    const { restaurants, isLoading } = useContext(RestaurantsContext);
 
     return (
         <HomeWrapper>

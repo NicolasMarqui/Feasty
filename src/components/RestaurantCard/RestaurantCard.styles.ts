@@ -39,14 +39,6 @@ export const RestaurantCardLabelText = styled.Text`
     font-size: 14px;
 `;
 
-export const RestaurantCardFavoriteWrapper = styled.TouchableOpacity`
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    justify-content: center;
-    align-items: center;
-`;
-
 export const RestaurantCardInfoWrapper = styled.View`
     flex-direction: row;
     align-items: center;
