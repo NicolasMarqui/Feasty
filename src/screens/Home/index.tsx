@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import RestaurantCard from "../../components/RestaurantCard";
 import { Paragraph } from "react-native-paper";
 // prettier-ignore
@@ -6,8 +6,12 @@ import { HomeWrapper, HomeTitleWrapper, HomeCurrent, HomeTitle, HomeRestaurantLi
 import { RestaurantsContext } from "../../services/restaurants/restaurants.context";
 import Loading from "../../components/Loading";
 import Search from "../../components/Search";
+import { LocationContext } from "../../services/restaurants/location/location.context";
+import Empty from "../../components/Empty";
 
 const Home: React.FC = ({}) => {
+    const { keyword } = useContext(LocationContext);
+    const { error: locationError } = useContext(LocationContext);
     const { restaurants, isLoading, error } = useContext(RestaurantsContext);
 
     return (
@@ -17,7 +21,9 @@ const Home: React.FC = ({}) => {
             <HomeTitleWrapper>
                 <HomeTitleInfo>
                     <HomeTitle>All restaurants</HomeTitle>
-                    <HomeCurrent>in San Francisco</HomeCurrent>
+                    <HomeCurrent>
+                        {keyword ? `in ${keyword}` : "Everywhere"}
+                    </HomeCurrent>
                 </HomeTitleInfo>
 
                 <HomeTitleMapWrapper>
@@ -27,6 +33,8 @@ const Home: React.FC = ({}) => {
 
             {isLoading ? (
                 <Loading />
+            ) : locationError || restaurants.length === 0 ? (
+                <Empty />
             ) : (
                 <HomeRestaurantList
                     data={restaurants}

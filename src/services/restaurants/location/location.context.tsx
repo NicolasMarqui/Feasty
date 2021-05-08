@@ -8,12 +8,12 @@ import React, {
 import { locationRequest, locationTransform } from "./location.service";
 
 interface ResultProps {
-    lat: number;
-    lng: number;
+    lat?: number | 0;
+    lng?: number | 0;
 }
 
 interface ContextProps {
-    location: ResultProps;
+    location: ResultProps | null;
     isLoading: boolean;
     error: string | undefined | null;
     search: (value: string) => any;
@@ -39,10 +39,7 @@ export const LocationContextProvider: React.FC<RestaurantContextProviderProps> =
     children,
 }) => {
     const [keyword, setKeyword] = useState("San Francisco");
-    const [location, setLocation] = useState<ResultProps>({
-        lat: 37.7749295,
-        lng: -122.4194155,
-    });
+    const [location, setLocation] = useState<ResultProps | null>(null);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState("");
 
@@ -59,13 +56,14 @@ export const LocationContextProvider: React.FC<RestaurantContextProviderProps> =
         locationRequest(keyword.toLowerCase())
             .then(locationTransform)
             .then((result) => {
+                setError("");
                 setLocation(result);
                 setIsLoading(false);
             })
             .catch((err) => {
                 setIsLoading(false);
                 setError(err);
-                console.log("Error location");
+                setLocation(null);
             });
     }, [keyword]);
 

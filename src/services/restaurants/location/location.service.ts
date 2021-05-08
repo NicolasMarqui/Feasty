@@ -5,7 +5,10 @@ export const locationRequest = (searchTerm: string) => {
     return new Promise((resolve, reject) => {
         // @ts-ignore
         const locationMock = locations[searchTerm];
-        if (!locationMock) reject("not found");
+        if (locationMock === undefined) {
+            reject("not found location");
+            return;
+        }
 
         resolve(locationMock);
     });

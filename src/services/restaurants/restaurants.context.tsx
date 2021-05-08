@@ -31,10 +31,11 @@ export const RestaurantsContextProvider: React.FC<RestaurantContextProviderProps
         setIsLoading(true);
         setRestaurant([]);
 
-        setTimeout(() => {
-            restaurantRequest(value)
+        setTimeout(async () => {
+            await restaurantRequest(value)
                 .then(restaurantTransform)
                 .then((results) => {
+                    setError("");
                     setIsLoading(false);
                     setRestaurant(results);
                 })
