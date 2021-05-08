@@ -16,7 +16,7 @@ export interface RestaurantMockProps {
             };
         };
     };
-    ix?: string;
+    icon?: string;
     name?: string;
     openingHours?: {
         openNow?: boolean;

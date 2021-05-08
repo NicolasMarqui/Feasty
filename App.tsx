@@ -10,6 +10,7 @@ import { Sarina_400Regular } from "@expo-google-fonts/sarina";
 import Header from "./src/components/Header";
 import Routes from "./src/routes";
 import { RestaurantsContextProvider } from "./src/services/restaurants/restaurants.context";
+import { LocationContextProvider } from "./src/services/restaurants/location/location.context";
 
 export default function App() {
     const [fontsLoaded] = useFonts({
@@ -27,10 +28,12 @@ export default function App() {
         // @ts-ignore
         <ThemeProvider theme={theme}>
             <StatusBar style="auto" />
-            <RestaurantsContextProvider>
-                <Header />
-                <Routes />
-            </RestaurantsContextProvider>
+            <LocationContextProvider>
+                <RestaurantsContextProvider>
+                    <Header />
+                    <Routes />
+                </RestaurantsContextProvider>
+            </LocationContextProvider>
         </ThemeProvider>
     );
 }

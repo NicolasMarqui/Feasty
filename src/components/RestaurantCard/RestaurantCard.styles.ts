@@ -1,5 +1,6 @@
 import styled, { css } from "styled-components/native";
 import { Card } from "react-native-paper";
+import { Image } from "react-native";
 
 export const RestaurantCardWrapper = styled(Card)`
     margin: 10px 0;
@@ -55,3 +56,8 @@ export const RestaurantCardInfoWrapper = styled.View`
 export const RestaurantCardInfo = styled.View``;
 
 export const RestaurantCardType = styled.View``;
+
+export const RestaurantCardIcon = styled(Image)`
+    width: 25px;
+    height: 25px;
+`;

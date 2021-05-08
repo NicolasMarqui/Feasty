@@ -1,6 +1,6 @@
 import React from "react";
 // prettier-ignore
-import { RestaurantCardWrapper, RestaurantStarWrapper, RestaurantCardLabelWrapper, RestaurantCardLabelText, RestaurantCardFavoriteWrapper, RestaurantCardInfoWrapper, RestaurantCardInfo, RestaurantCardType} from "./RestaurantCard.styles";
+import { RestaurantCardWrapper, RestaurantStarWrapper, RestaurantCardLabelWrapper, RestaurantCardLabelText, RestaurantCardFavoriteWrapper, RestaurantCardInfoWrapper, RestaurantCardInfo, RestaurantCardType, RestaurantCardIcon} from "./RestaurantCard.styles";
 import { Card, Title, Paragraph } from "react-native-paper";
 import { Rating } from "react-native-ratings";
 import { MaterialIcons } from "@expo/vector-icons";
@@ -21,7 +21,7 @@ const mock = {
 
 const RestaurantCard: React.FC<RestaurantCardProps> = ({ restaurant }) => {
     const navigation = useNavigation();
-    const { name, rating, vicinity, photos, isOpenNow } = restaurant;
+    const { name, rating, vicinity, photos, isOpenNow, icon } = restaurant;
 
     return (
         <RestaurantCardWrapper
@@ -69,7 +69,9 @@ const RestaurantCard: React.FC<RestaurantCardProps> = ({ restaurant }) => {
                         <Paragraph>{vicinity}</Paragraph>
                     </RestaurantCardInfo>
 
-                    <RestaurantCardType></RestaurantCardType>
+                    <RestaurantCardType>
+                        <RestaurantCardIcon source={{ uri: icon }} />
+                    </RestaurantCardType>
                 </RestaurantCardInfoWrapper>
             </Card.Content>
         </RestaurantCardWrapper>
