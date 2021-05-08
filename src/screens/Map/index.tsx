@@ -3,9 +3,12 @@ import SearchMap from "../../components/SearchMap";
 import { LocationContext } from "../../services/restaurants/location/location.context";
 import { RestaurantsContext } from "../../services/restaurants/restaurants.context";
 import { Map, MapWrapper } from "./Map.styles";
-import MapView from "react-native-maps";
+import { Marker, Callout } from "react-native-maps";
+import CalloutMap from "../../components/Callout";
+import { useNavigation } from "@react-navigation/core";
 
 const FullMap: React.FC = ({}) => {
+    const navigation = useNavigation();
     const { location } = useContext(LocationContext);
     const { restaurants = [] } = useContext(RestaurantsContext);
 
@@ -32,7 +35,26 @@ const FullMap: React.FC = ({}) => {
                 }}
             >
                 {restaurants.map((restaurant) => {
-                    return null;
+                    return (
+                        <Marker
+                            key={restaurant.name}
+                            title={restaurant.name}
+                            coordinate={{
+                                latitude: restaurant.geometry.location.lat,
+                                longitude: restaurant.geometry.location.lng,
+                            }}
+                        >
+                            <Callout
+                                onPress={() =>
+                                    navigation.navigate("detail", {
+                                        data: restaurant,
+                                    })
+                                }
+                            >
+                                <CalloutMap restaurant={restaurant} />
+                            </Callout>
+                        </Marker>
+                    );
                 })}
             </Map>
         </MapWrapper>
