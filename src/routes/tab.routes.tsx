@@ -2,13 +2,14 @@ import React, { useContext } from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { MaterialIcons } from "@expo/vector-icons";
 import StackRoutes from "./stack.routes";
+import { AuthContext } from "../services/auth/auth.context";
 
-import Home from "../screens/Home";
 import MapTabBar from "../components/MapTabBar";
 import Checkout from "../screens/Checkout";
 import FullMap from "../screens/Map";
 import Favorites from "../screens/Favorites";
-import { AuthContext } from "../services/auth/auth.context";
+import ProfileStack from "./stack.profile.routes";
+import LoginStack from "./stack.login.routes";
 
 const Apptab = createBottomTabNavigator();
 
@@ -89,7 +90,7 @@ const TabRoutes = ({}) => {
             {isAuthenticated ? (
                 <Apptab.Screen
                     name="Profile"
-                    component={Home}
+                    component={ProfileStack}
                     options={{
                         tabBarIcon: ({ size, color }) => (
                             <MaterialIcons
@@ -103,7 +104,7 @@ const TabRoutes = ({}) => {
             ) : (
                 <Apptab.Screen
                     name="Login"
-                    component={Home}
+                    component={LoginStack}
                     options={{
                         tabBarIcon: ({ size, color }) => (
                             <MaterialIcons
