@@ -37,3 +37,7 @@ export interface RestaurantMockProps {
     isOpenNow?: boolean;
     isClosedTemporarily?: boolean;
 }
+
+export interface Params {
+    data: RestaurantMockProps;
+}
