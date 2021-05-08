@@ -19,12 +19,14 @@ const TabRoutes = ({}) => {
                 inactiveTintColor: "#4E4E4E",
                 labelPosition: "below-icon",
                 keyboardHidesTabBar: true,
-                showLabel: false,
+                showLabel: true,
                 labelStyle: {
-                    color: "#F94144",
+                    color: "#fff",
                 },
                 style: {
                     paddingHorizontal: 12,
+                    paddingBottom: 10,
+                    height: 60,
                     backgroundColor: "#222",
                 },
             }}

@@ -8,7 +8,7 @@ export const MapTabBarWrapper = styled.View`
     border-radius: 40px;
     justify-content: center;
     align-items: center;
-    margin-bottom: 30px;
+    margin-bottom: 40px;
 `;
 
 export const MapTabIcon = styled(MaterialIcons)`

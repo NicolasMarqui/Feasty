@@ -48,13 +48,15 @@ export const LocationContextProvider: React.FC<RestaurantContextProviderProps> =
 
     const onSearch = (searchKeyword: string) => {
         setIsLoading(true);
-        setKeyword(searchKeyword.toLowerCase());
+        setKeyword(searchKeyword);
+    };
 
-        if (!searchKeyword.length) {
+    useEffect(() => {
+        if (!keyword.length) {
             return;
         }
 
-        locationRequest(searchKeyword.toLowerCase())
+        locationRequest(keyword.toLowerCase())
             .then(locationTransform)
             .then((result) => {
                 setLocation(result);
@@ -65,7 +67,8 @@ export const LocationContextProvider: React.FC<RestaurantContextProviderProps> =
                 setError(err);
                 console.log("Error location");
             });
-    };
+    }, [keyword]);
+
     useEffect(() => {
         onSearch(keyword);
     }, []);

@@ -53,9 +53,14 @@ export const RestaurantCardInfoWrapper = styled.View`
     justify-content: space-between;
 `;
 
-export const RestaurantCardInfo = styled.View``;
+export const RestaurantCardInfo = styled.View`
+    flex: 3;
+`;
 
-export const RestaurantCardType = styled.View``;
+export const RestaurantCardType = styled.View`
+    flex: 1;
+    align-items: flex-end;
+`;
 
 export const RestaurantCardIcon = styled(Image)`
     width: 25px;
