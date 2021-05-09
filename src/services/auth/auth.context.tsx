@@ -6,10 +6,11 @@ interface AuthContextProps {
     isLoading?: boolean;
     user?: User | {};
     isAuthenticated?: boolean;
-    error?: string;
-    onLogin?: (email: string, password: string) => void;
+    error: string;
+    onLogin: (email: string, password: string) => void;
 }
 
+// @ts-ignore
 export const AuthContext = createContext<AuthContextProps>({});
 
 interface AuthContextProviderProps {
@@ -21,20 +22,22 @@ export const AuthContextProvider: React.FC<AuthContextProviderProps> = ({
 }) => {
     const [isLoading, setIsLoading] = useState(false);
     const [user, setUser] = useState<User | {}>({});
-    const [error, setError] = useState("null");
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [error, setError] = useState("");
+    const [isAuth, setIsAuth] = useState(false);
 
     const onLogin = (email: string, password: string) => {
         setIsLoading(true);
+        setError("");
+
         loginRequest(email, password)
-            .then((u) => {
+            .then((u: any) => {
+                setIsAuth(true);
                 setUser(u);
-                setIsAuthenticated(true);
                 setIsLoading(false);
             })
-            .catch((e) => {
-                setIsAuthenticated(false);
-                setError(e);
+            .catch((e: any) => {
+                setIsAuth(false);
+                setError(e.toString());
                 setIsLoading(false);
             });
     };
@@ -44,7 +47,7 @@ export const AuthContextProvider: React.FC<AuthContextProviderProps> = ({
             value={{
                 user,
                 isLoading,
-                isAuthenticated,
+                isAuthenticated: isAuth,
                 error,
                 onLogin,
             }}
