@@ -1,23 +1,17 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 // prettier-ignore
-import {  LoginContainer, LoginTitle, LoginWrapper, LoginSubtitle, LoginForm, LoginFormInput, LoginButton, LoginButtonText, LoginCreateWrapper } from "../Login/Login.styles";
+import {  LoginContainer, LoginTitle, LoginWrapper, LoginSubtitle, LoginForm, LoginFormInput, LoginButton, LoginButtonText, LoginCreateWrapper, LoginErrorWrapper } from "../Login/Login.styles";
 import ImageBG from "../../components/ImageBG";
 import { useNavigation } from "@react-navigation/core";
 import { AuthContext } from "../../services/auth/auth.context";
 
 const Signup: React.FC = ({}) => {
     const navigation = useNavigation();
-    const { onLogin } = useContext(AuthContext);
+    const { onRegister, error, isLoading } = useContext(AuthContext);
 
-    const [email, setEmail] = useState<string>();
-    const [password, setPassword] = useState<string>();
-    const [isLoading, setIsLoading] = useState(false);
-
-    const handleSubmit = async () => {
-        if (!email || !password) return;
-
-        onLogin(email, password);
-    };
+    const [email, setEmail] = useState<string>("");
+    const [password, setPassword] = useState<string>("");
+    const [repeatedPassword, setRepeatedPassword] = useState<string>("");
 
     return (
         <LoginWrapper>
@@ -51,9 +45,29 @@ const Signup: React.FC = ({}) => {
                             onChangeText={(e) => setPassword(e)}
                         />
 
+                        <LoginFormInput
+                            label="Repeat Pasword"
+                            mode="flat"
+                            value={repeatedPassword}
+                            underlineColor="#F94144"
+                            underlineColorAndroid="#F94144"
+                            textContentType="password"
+                            secureTextEntry
+                            autoCapitalize="none"
+                            onChangeText={(e) => setRepeatedPassword(e)}
+                        />
+
+                        {error?.length > 0 && (
+                            <LoginErrorWrapper>
+                                <LoginSubtitle>{error}</LoginSubtitle>
+                            </LoginErrorWrapper>
+                        )}
+
                         <LoginButton
                             loading={isLoading}
-                            onPress={handleSubmit}
+                            onPress={() =>
+                                onRegister(email, password, repeatedPassword)
+                            }
                             icon="lock-open-outline"
                         >
                             <LoginButtonText>Register</LoginButtonText>

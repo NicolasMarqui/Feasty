@@ -7,22 +7,10 @@ import { AuthContext } from "../../services/auth/auth.context";
 
 const Login: React.FC = ({}) => {
     const navigation = useNavigation();
-    const { onLogin, error } = useContext(AuthContext);
+    const { onLogin, error, isLoading } = useContext(AuthContext);
 
-    const [email, setEmail] = useState<string>();
-    const [password, setPassword] = useState<string>();
-    const [isLoading, setIsLoading] = useState(false);
-
-    const handleSubmit = async () => {
-        if (!email || !password) return;
-
-        setIsLoading(true);
-        onLogin(email, password);
-    };
-
-    useEffect(() => {
-        setIsLoading(false);
-    }, [error]);
+    const [email, setEmail] = useState<string>("");
+    const [password, setPassword] = useState<string>("");
 
     return (
         <LoginWrapper>
@@ -64,7 +52,7 @@ const Login: React.FC = ({}) => {
 
                         <LoginButton
                             loading={isLoading}
-                            onPress={handleSubmit}
+                            onPress={() => onLogin(email, password)}
                             icon="lock-open-outline"
                         >
                             <LoginButtonText>Login</LoginButtonText>

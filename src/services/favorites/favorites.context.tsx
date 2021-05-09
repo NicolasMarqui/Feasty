@@ -1,6 +1,7 @@
-import React, { createContext, useState, useEffect } from "react";
+import React, { createContext, useState, useEffect, useContext } from "react";
 import { RestaurantMockProps } from "../../utils/types";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { AuthContext } from "../auth/auth.context";
 
 interface FavoritesContextProps {
     favorites?: RestaurantMockProps[] | [];
@@ -18,20 +19,23 @@ interface FavoritesContextProviderProps {
 export const FavoritesContextProvider: React.FC<FavoritesContextProviderProps> = ({
     children,
 }) => {
+    const { user } = useContext(AuthContext);
     const [favorites, setFavorites] = useState<RestaurantMockProps[]>([]);
 
-    const saveFavorites = async (value: any) => {
+    const saveFavorites = async (value: any, uid: any) => {
         try {
             const jsonValue = JSON.stringify(value);
-            await AsyncStorage.setItem("@feasty:favorites", jsonValue);
+            await AsyncStorage.setItem(`@feasty:favorites-${uid}`, jsonValue);
         } catch (e) {
             console.log("Save favorites error");
         }
     };
 
-    const loadFavorites = async () => {
+    const loadFavorites = async (uid: any) => {
         try {
-            const value = await AsyncStorage.getItem("@feasty:favorites");
+            const value = await AsyncStorage.getItem(
+                `@feasty:favorites-${uid}`
+            );
             if (value !== null) {
                 setFavorites(JSON.parse(value));
             }
@@ -52,12 +56,18 @@ export const FavoritesContextProvider: React.FC<FavoritesContextProviderProps> =
     };
 
     useEffect(() => {
-        loadFavorites();
-    }, []);
+        if (user) {
+            // @ts-ignore
+            loadFavorites(user?.uid);
+        }
+    }, [user]);
 
     useEffect(() => {
-        saveFavorites(favorites);
-    }, [favorites]);
+        if (user) {
+            // @ts-ignore
+            saveFavorites(favorites, user?.uid);
+        }
+    }, [favorites, user]);
 
     return (
         <FavoritesContext.Provider
